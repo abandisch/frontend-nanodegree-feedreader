@@ -108,10 +108,34 @@ $(function() {
 
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection"
+    /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function() {
+        var self = this;
 
-     /* TODO: Write a test that ensures when a new feed is loaded
-     * by the loadFeed function that the content actually changes.
-     * Remember, loadFeed() is asynchronous.
-     */
+        /* TODO: Write a test that ensures when a new feed is loaded
+         * by the loadFeed function that the content actually changes.
+         * Remember, loadFeed() is asynchronous.
+         */
+        beforeEach(function(done) {
+            if (allFeeds.length >= 2) {
+                self.currentContent = $('.feed').find('.entry').find('h2').text();
+                loadFeed(1, function() {
+                    self.newContent = $('.feed').find('.entry').find('h2').text();
+                    done();
+                });
+            } else {
+                done();
+            }
+        });
+
+        it('Should ensure a new feed changes the content', function(done) {
+            if (allFeeds.length >= 2) {
+                expect(self.currentContent).not.toBe(self.newContent);
+            } else {
+                fail("Cannot test - not enough feeds");
+            }
+            done();
+        });
+    });
+
 }());
