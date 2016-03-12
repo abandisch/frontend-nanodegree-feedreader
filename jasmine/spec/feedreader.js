@@ -35,7 +35,7 @@ $(function() {
             for (var key in allFeeds) {
                 var feed = allFeeds[key];
                 expect(feed.url).toBeDefined();
-                expect(feed.url.trim()).not.toBe("");
+                expect(feed.url.trim()).toBeTruthy();
             }
         });
 
@@ -47,26 +47,46 @@ $(function() {
             for (var key in allFeeds) {
                 var feed = allFeeds[key];
                 expect(feed.name).toBeDefined();
-                expect(feed.name.trim()).not.toBe("");
+                expect(feed.name.trim()).toBeTruthy();
             }
         });
     });
 
 
     /* TODO: Write a new test suite named "The menu" */
+    describe('The menu', function() {
+        var $body = $('body');
 
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+        it('Should ensure that the menu element is hidden by default', function() {
+            var bodyClass = $body.attr('class');
+            expect(bodyClass).toBe("menu-hidden");
+        });
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
 
+        /* TODO: Write a test that ensures the menu changes
+         * visibility when the menu icon is clicked. This test
+         * should have two expectations: does the menu display when
+         * clicked and does it hide when clicked again.
+         */
+        it('Should ensure the menu changes visibility when the menu icon is clicked', function() {
+            var $menu_icon = $('.menu-icon-link'),
+                bodyClassAfterClicking;
+
+            $menu_icon.trigger('click');
+            bodyClassAfterClicking = $body.attr('class');
+            expect(bodyClassAfterClicking).toBeFalsy();
+
+            $menu_icon.trigger('click');
+            bodyClassAfterClicking = $body.attr('class');
+            expect(bodyClassAfterClicking).toBe("menu-hidden");
+        });
+    });
+    
     /* TODO: Write a new test suite named "Initial Entries" */
 
         /* TODO: Write a test that ensures when the loadFeed
