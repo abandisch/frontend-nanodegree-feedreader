@@ -35,7 +35,7 @@ $(function() {
             for (var key in allFeeds) {
                 var feed = allFeeds[key];
                 expect(feed.url).toBeDefined();
-                expect(feed.url.trim()).toBeTruthy();
+                expect(feed.url.trim().length).toBeTruthy();
             }
         });
 
@@ -47,7 +47,7 @@ $(function() {
             for (var key in allFeeds) {
                 var feed = allFeeds[key];
                 expect(feed.name).toBeDefined();
-                expect(feed.name.trim()).toBeTruthy();
+                expect(feed.name.trim().length).toBeTruthy();
             }
         });
     });
@@ -102,7 +102,8 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
         it('Should have at least one .entry element within the .feed container', function(done) {
-            expect($('.feed').find('.entry').length).toBeTruthy();
+            var numberOfEntries = $('.feed').find('.entry').length;
+            expect(numberOfEntries).toBeTruthy();
             done();
         });
 
