@@ -111,17 +111,19 @@ $(function() {
 
     /* TODO: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function() {
-        var self = this;
+        var currentContent,
+            newContent,
+            enoughFeeds = (allFeeds.length >= 2);
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
         beforeEach(function(done) {
-            if (allFeeds.length >= 2) {
-                self.currentContent = $('.feed').find('.entry').find('h2').text();
+            if (enoughFeeds) {
+                currentContent = $('.feed').find('.entry').find('h2').text();
                 loadFeed(1, function() {
-                    self.newContent = $('.feed').find('.entry').find('h2').text();
+                    newContent = $('.feed').find('.entry').find('h2').text();
                     done();
                 });
             } else {
@@ -130,8 +132,8 @@ $(function() {
         });
 
         it('Should ensure a new feed changes the content', function(done) {
-            if (allFeeds.length >= 2) {
-                expect(self.currentContent).not.toBe(self.newContent);
+            if (enoughFeeds) {
+                expect(currentContent).not.toBe(newContent);
             } else {
                 fail("Cannot test - not enough feeds");
             }
@@ -139,7 +141,7 @@ $(function() {
         });
 
         afterEach(function(done) {
-            if (allFeeds.length >= 2) {
+            if (enoughFeeds) {
                 loadFeed(0);
             }
             done();
