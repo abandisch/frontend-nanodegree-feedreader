@@ -137,6 +137,13 @@ $(function() {
             }
             done();
         });
+
+        afterEach(function(done) {
+            if (allFeeds.length >= 2) {
+                loadFeed(0);
+            }
+            done();
+        });
     });
 
 }());
