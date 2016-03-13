@@ -8,7 +8,7 @@ The purpose of this project is to create a suite of tests using the Jasmine java
 
 This is a single page application that loads RSS feeds and provides the users with links for the given feed. The user may open a menu that provides a selection of other feeds to load.  
 
-## Where to view the Jasmine test results
+### Where to view the Jasmine test results
 
 The Jasmine test results are displayed at the bottom of the page.
 
