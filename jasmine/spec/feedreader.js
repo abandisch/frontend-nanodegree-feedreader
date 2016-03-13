@@ -25,30 +25,27 @@ $(function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
-
-
-        /* TODO: Write a test that loops through each feed
+        
+        /* A test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
         it('Should have a URL defined and the URL should not be empty', function() {
-            for (var key in allFeeds) {
-                var feed = allFeeds[key];
+            allFeeds.forEach(function(feed) {
                 expect(feed.url).toBeDefined();
                 expect(feed.url.trim().length).toBeTruthy();
-            }
+            });
         });
 
-        /* TODO: Write a test that loops through each feed
+        /* A test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
         it('Should have a name defined and the name should not be empty', function() {
-            for (var key in allFeeds) {
-                var feed = allFeeds[key];
+            allFeeds.forEach(function(feed) {
                 expect(feed.name).toBeDefined();
                 expect(feed.name.trim().length).toBeTruthy();
-            }
+            });
         });
     });
 
