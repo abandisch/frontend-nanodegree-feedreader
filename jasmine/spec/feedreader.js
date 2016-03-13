@@ -25,7 +25,7 @@ $(function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
-        
+
         /* A test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
@@ -50,25 +50,21 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    /**
+     * Test suite: The menu
+     */
     describe('The menu', function() {
         var $body = $('body');
 
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
+        /* A test that ensures the menu element is hidden by default. */
         it('Should ensure that the menu element is hidden by default', function() {
             var bodyClass = $body.attr('class');
             expect(bodyClass).toBe("menu-hidden");
         });
 
 
-        /* TODO: Write a test that ensures the menu changes
-         * visibility when the menu icon is clicked. This test
-         * should have two expectations: does the menu display when
-         * clicked and does it hide when clicked again.
+        /* A test that ensures the menu changes visibility when the menu icon is clicked.
+         * This test has two expectations: does the menu display when clicked and does it hide when clicked again.
          */
         it('Should ensure the menu changes visibility when the menu icon is clicked', function() {
             var $menu_icon = $('.menu-icon-link'),
