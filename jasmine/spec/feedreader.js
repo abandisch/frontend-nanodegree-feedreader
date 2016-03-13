@@ -85,9 +85,9 @@ $(function() {
      */
     describe('Initial Entries', function() {
 
-        /*
-         * loadFeed() is asynchronous, so before the test, call Jasmine's asynchronous
-         * done() function when loadFeed() completes.
+        /* loadFeed() is asynchronous, so before the test, call
+         * Jasmine's asynchronous done() function when loadFeed()
+         * completes.
          */
         beforeEach(function(done) {
             loadFeed(0, function() {
@@ -95,8 +95,9 @@ $(function() {
             });
         });
 
-        /* A test that ensures when the loadFeed function is called and completes its work,
-         * there is at least a single .entry element within the .feed container.
+        /* A test that ensures when the loadFeed function is called
+         * and completes its work, there is at least a single .entry
+         * element within the .feed container.
          */
         it('Should have at least one .entry element within the .feed container', function(done) {
             var numberOfEntries = $('.feed').find('.entry').length;
@@ -106,20 +107,29 @@ $(function() {
 
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    /**
+     * Test suite: New Feed Selection
+     */
     describe('New Feed Selection', function() {
         var currentContent,
             newContent,
+            currentHeader,
+            newHeader,
             enoughFeeds = (allFeeds.length >= 2);
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
+        /* Before the test, check there are at least 2 feeds. If so,
+         * store the current content text, then load the second feed.
+         * Once the second feed has been loaded, store the new content,
+         * and then call the asynchronous done() function.
+         * If there is less than 2 feeds, just call the asynchronous
+         * done() function.
          */
         beforeEach(function(done) {
             if (enoughFeeds) {
+                currentHeader = $('.header-title').text();
                 currentContent = $('.feed').find('.entry').find('h2').text();
                 loadFeed(1, function() {
+                    newHeader = $('.header-title').text();
                     newContent = $('.feed').find('.entry').find('h2').text();
                     done();
                 });
@@ -128,8 +138,16 @@ $(function() {
             }
         });
 
+        /* A test that ensures when a new feed is loaded
+         * by the loadFeed function that the content actually changes.
+         * If there is more than 1 feed, the test compares the original
+         * text content with that of the newly loaded text content.
+         * If there was only 1 feed, then this test cannot be completed,
+         * therefore call the Jasmine fail() function.
+         */
         it('Should ensure a new feed changes the content', function(done) {
             if (enoughFeeds) {
+                expect(currentHeader).not.toBe(newHeader);
                 expect(currentContent).not.toBe(newContent);
             } else {
                 fail("Cannot test - not enough feeds");
