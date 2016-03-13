@@ -20,8 +20,8 @@ To start the application, open `index.html` in your browser.
 
 Test Suite: RSS Feeds:
   * Tests to make sure that the `allFeeds` variable has been defined and that it is not empty.
-  * Test that loops through each feed in the `allFeeds` object and ensures it has a `URL` defined and that the `URL` is not empty.
-  * Test that loops through each feed in the `allFeeds` object and ensures it has a `name` defined and that the `name` is not empty.
+  * Tests to ensure that each feed in the `allFeeds` object has a `URL` defined and that the `URL` is not empty.
+  * Tests to ensure that each feed in the `allFeeds` object has a `name` defined and that the `name` is not empty.
 
 Test Suite: The Menu:
   * Tests that makes sure that the menu element is hidden by default.
